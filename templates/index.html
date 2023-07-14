@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sorting and Searching</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #aa7dcb;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="file"] {
+            margin-bottom: 10px;
+        }
+
+        select {
+            width: 150px;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"] {
+            width: 200px;
+        }
+
+        input[type="submit"] {
+            background-color: #b3b7bb;
+            color: white(187, 147, 224);
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        h2, h3 {
+            margin-top: 20px;
+            color: #333;
+        }
+        div{
+            margin: auto;
+            width: 40%;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="cen">
+    <h1>Sorting and Searching</h1>
+
+    <form method="POST" enctype="multipart/form-data">
+        <label for="file">Choose a CSV file:</label>
+        <br><br>
+        <input type="file" name="file" id="file" accept=".csv" required>
+        <br><br>
+        <label for="sort_option">Sort by:</label>
+        <br>
+        <select name="sort_option" id="sort_option">
+            <option value="1">USN</option>
+            <option value="2">Rank</option>
+        </select>
+        <br><br>
+        <label for="search_usn">Search by USN:</label>
+        <br>
+        <input type="text" name="search_usn" id="search_usn" required>
+        <br><br>
+        <input type="submit" value="Submit">
+    </form>
+</div>
+
+    {% if result %}
+        <h2>Sorted Result:</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>USN</th>
+                    <th>Name</th>
+                    <th>LPS</th>
+                    <th>PS</th>
+                    <th>DAA</th>
+                    <th>FAFL</th>
+                    <th>PMCO</th>
+                    <th>TOTAL</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in result %}
+                <tr>
+                    <td>{{ item[0] }}</td>
+                    <td>{{ item[1][0] }}</td>
+                    <td>{{ item[1][1] }}</td>
+                    <td>{{ item[1][2] }}</td>
+                    <td>{{ item[1][3] }}</td>
+                    <td>{{ item[1][4] }}</td>
+                    <td>{{ item[1][5] }}</td> 
+                    <td>{{ item[1][6] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% if sort_time %}
+        <h3>Sorting Time: {{ sort_time }} seconds</h3>
+        {% endif %}
+    {% endif %}
+
+    {% if search_result %}
+        <h2>Search Result:</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>USN</th>
+                    <th>Name</th>
+                    <th>LPS</th>
+                    <th>PS</th>
+                    <th>DAA</th>
+                    <th>FAFL</th>
+                    <th>PMCO</th>
+                    <th>TOTAL</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in search_result %}
+                <tr>
+                    <td>{{ item[0] }}</td>
+                    <td>{{ item[1][0] }}</td>
+                    <td>{{ item[1][1] }}</td>
+                    <td>{{ item[1][2] }}</td>
+                    <td>{{ item[1][3] }}</td>
+                    <td>{{ item[1][4] }}</td>
+                    <td>{{ item[1][5] }}</td> 
+                    <td>{{ item[1][6] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% if search_time %}
+        <h3>Searching Time: {{ search_time }} seconds</h3>
+        {% endif %}
+    {% endif %}
+</body>
+</html>
