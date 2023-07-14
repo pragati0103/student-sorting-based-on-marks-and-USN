@@ -19,7 +19,7 @@ Flask-Mark-Sorter: A lightweight web app using Flask framework to sort student m
 ## Getting Started
 
 1. Clone the repository:
-   git clone https://github.com/NuthanB/USN-Mark-Sorter-Flask.git
+   git clone https://github.com/pragati0103/student-sorting-based-on-marks-and-USN
 2. Install the required dependencies:
    pip install Flask pandas
 3. Run the Flask server
